@@ -2,7 +2,7 @@
 import React from 'react';
 import axios from 'axios';
 
-const APOD = () => {
+const SWData = () => {
     const [swData, setswData] = useState([]);
     const [swSearch, setswSearch] = useState('people');
 
@@ -13,7 +13,7 @@ const APOD = () => {
             .then(response => {
               console.log('success!', response)
               // 5. STATE CHANGE! update films to Array of film objs
-              setpicOTD(response.data) // response.data = Array[film objs]
+              setswData(response.data) // response.data = Array[film objs]
             }) 
             .catch(error => console.log('error', error))
       }
@@ -23,13 +23,13 @@ const APOD = () => {
       useEffect(effectFn, [swSearch])
 
     return (
-        <div className="picOTD">
-             <input className='date'type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
-            <APODCard 
-                photo={picOTD.hdurl}
-                title={picOTD.title}
-                explanation={picOTD.explanation}
-                date={picOTD.date}
+        <div className="starwars">
+             <input id='search' type="search" name="search" value={swSearch} onChange={e => setswSearch(e.target.value)} />
+            <swData 
+                name={swData.name}
+                films={swData.films}
+                starships={swData.starships}
+                vehicles={swData.vehicles}
                 />
            
         </div>
