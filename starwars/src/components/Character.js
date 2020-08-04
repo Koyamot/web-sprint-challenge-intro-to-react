@@ -1,44 +1,48 @@
 // Write your Character component here
 import React from 'react';
-import axios from 'axios';
+import styled from 'styled-components';
 
-const SWData = () => {
-    const [swData, setswData] = useState([]);
-    const [swSearch, setswSearch] = useState('people');
+const Card = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: white;
+    margin: 0 auto;
+    width: 25%;
+    border-radius: 3px;
+    padding: 24px;
+    margin-top: 24px;
+`;
 
-    const effectFn = () => {
-        // 4. the effect fn is pulled from the waiting room and fired!
-        axios
-            .get(`https://swapi.py4e.com/api/${swSearch}/`)
-            .then(response => {
-              console.log('success!', response)
-              // 5. STATE CHANGE! update films to Array of film objs
-              setswData(response.data) // response.data = Array[film objs]
-            }) 
-            .catch(error => console.log('error', error))
-      }
+const CharCard = styled.div`
+
+`;
+
     
-      // 2. sees useEffect hook & queues like a waiting room the effect fn (first param)
-      // 7. useEffect has dependency array of [], so effectFn IS NOT QUEUED.
-      useEffect(effectFn, [swSearch])
+
+const Character = ({character}) => {
 
     return (
-        <div className="starwars">
-             <input id='search' type="search" name="search" value={swSearch} onChange={e => setswSearch(e.target.value)} />
-            <swData 
-                name={swData.name}
-                films={swData.films}
-                starships={swData.starships}
-                vehicles={swData.vehicles}
-                />
-           
-        </div>
-    )
-
+      <Card className="fancy" key="key">
+        <CharCard className="swcharacters" key="key">
+            <h2>{character.name}</h2>
+            <p>Birth Year: {character.birth_year}</p>
+            <p>Height: {character.height}</p>
+            <p>Gender: {character.gender}</p>
+            <p>Movies: {character.films.length}</p>
+            <p>Starships: {character.starships.length}</p>
+            <p>Vehicles: {character.vehicles.length}</p>
+        </CharCard>
+        </Card>
+      );
 }
 
 
 
+export default Character;
 
 
-export default Characters;
+// name={data.name}
+// films={data.films}
+// starships={data.starships}
+// vehicles={data.vehicles}
