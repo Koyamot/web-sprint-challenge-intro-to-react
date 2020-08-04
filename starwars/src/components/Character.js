@@ -1,12 +1,13 @@
 // Write your Character component here
 import React from 'react';
 import styled from 'styled-components';
+import Header from './Header';
 
 const Card = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: white;
+    background-color: rgba(0, 0, 0, 0.5);
     margin: 0 auto;
     width: 25%;
     border-radius: 3px;
@@ -14,8 +15,16 @@ const Card = styled.div`
     margin-top: 24px;
 `;
 
-const CharCard = styled.div`
+const PlainCard = styled.div`
 
+`;
+
+const H2 = styled.h2`
+  color: white;
+`;
+
+const P = styled.p`
+  color: white;
 `;
 
     
@@ -24,15 +33,15 @@ const Character = ({character}) => {
 
     return (
       <Card className="fancy" key="key">
-        <CharCard className="swcharacters" key="key">
-            <h2>{character.name}</h2>
-            <p>Birth Year: {character.birth_year}</p>
-            <p>Height: {character.height}</p>
-            <p>Gender: {character.gender}</p>
-            <p>Movies: {character.films.length}</p>
-            <p>Starships: {character.starships.length}</p>
-            <p>Vehicles: {character.vehicles.length}</p>
-        </CharCard>
+        <PlainCard className="swcharacters" key="key">
+            <H2>{character.name}</H2>
+            <P>Birth Year: {character.birth_year}</P>
+            <P>Height: {character.height}</P>
+            <P>Gender: {character.gender}</P>
+            <P>Movies: {character.films.length}</P>
+            <P>Starships: {character.starships.length}</P>
+            <P>Vehicles: {character.vehicles.length}</P>
+        </PlainCard>
         </Card>
       );
 }

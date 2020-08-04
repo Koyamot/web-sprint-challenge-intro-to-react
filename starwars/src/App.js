@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
 import Character from './components/Character';
+import Footer from './components/Footer';
+import Header from './components/Header';
 import styled from 'styled-components';
 
 const CardStyle = styled.div`
@@ -10,8 +12,20 @@ const CardStyle = styled.div`
 `;
 
 const Button = styled.button`
-  height: 24px;
-  width: 50px;
+  border: none;
+  border-radius: 4px;
+  height: 48px;
+  width: 72px;
+  margin: 24px 12px;
+  font-style: bold;
+  color: white;
+  background: rgba(0, 0, 0, 0.75);
+  text-decoration: none;
+  
+`;
+
+const H1 = styled.h1`
+  color: white;
 `;
 
 const App = () => {
@@ -50,7 +64,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1 className="Header">Star Wars Characters</h1>
+      <Header /> 
+      <H1 className="Header">Star Wars Characters</H1>
       <input id='search' type="search" name="search" value={swSearch} onChange={e => setswSearch(e.target.value)} />
       <CardStyle>
         {swData.map(character => {
@@ -63,12 +78,13 @@ const App = () => {
                 bday={character.birth_year}
                 starships={character.starships}
                 vehicles={character.vehicles}
-                key={character.name}
+                key={character.name}  
                   />;
               })}  
       </CardStyle>
       <Button onClick={() => setPgNum(pgNum === 1 ? pgNum : pgNum-1)}> Back </Button> 
       <Button onClick={() => setPgNum(pgNum+1)}> Next </Button>
+      <Footer />
     </div>
   );
 }
